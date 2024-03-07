@@ -24,14 +24,12 @@ Route::get('tests/test', [TestController::class, 'index']);
 Route::prefix('contacts')
 ->middleware(['auth'])
 ->controller(ContactFormController::class)
-->name('contacts')
+->name('contacts.')
 ->group(function(){
   Route::get('/','index')->name('index');
   Route::get('/create','create')->name('create');
+  Route::post('/', 'store')->name('store');
 });
-
-Route::get('contacts', [ContactFormController::class, 'index'])->name('contacts.index');
-Route::get('/contacts/create', [ContactFormController::class, 'create'])->name('contacts.create');
 
 Route::get('/', function () {
     return view('welcome');
